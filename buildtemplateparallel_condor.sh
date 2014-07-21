@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.0.14 test"
+VERSION="0.0.14 test" 
 afftype=".txt"
 # trap keyboard interrupt (control-c)
 trap control_c SIGINT
