@@ -1,4 +1,4 @@
-ANTs-condor
+ANTs-Condor
 ===========
 
 ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the one of the best image registration tools and it takes quite sizable computational resources when it creates unbiased study-specific templates.
