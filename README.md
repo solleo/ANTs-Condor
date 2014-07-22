@@ -8,12 +8,12 @@ While the parallelization implemented in ANTS's script "buildtemplateparallel.sh
 This project is to enable ANTs(1.9.v4-LINUX)'s parallel template building to work on Condor. To run it:
 
 0. You need to have ANTs, and Condor installed and executable.
-1. Since it submit jobs via fsl_sub, you also need to have fsl_sub executable and set environment variable as:
+0.5 Since it submit jobs via fsl_sub, you also need to have fsl_sub executable and set environment variable as:
 ```
 export FSLPARALLEL=CONDOR
 ```
-2. Download two files "buildtemplateparallel_condor.sh" and "waitForCONDORJobs.sh" into ANT's executable path (i.e. ${ANTSPATH})
-3. run "buildtemplateparallel_condor.sh" with the "standard" arguments for "buildtemplateparallel.sh" and "-c 5" for Condor.
+1. Download two files "buildtemplateparallel_condor.sh" and "waitForCONDORJobs.sh" into ANT's executable path (i.e. ${ANTSPATH})
+2. run "buildtemplateparallel_condor.sh" with the "standard" arguments for "buildtemplateparallel.sh" and "-c 5" for Condor.
 
 (cc) sgKIM, 2014. solleo@gmail.com
 
