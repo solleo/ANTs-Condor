@@ -13,7 +13,3 @@ This project is to enable ANTs(1.9.v4-LINUX)'s parallel template building to wor
 3. run "buildtemplateparallel_condor.sh" with the standard arguments for "buildtemplateparallel.sh" and "-c 5" for Condor.
 
 (cc) sgKIM, 2014. solleo@gmail.com
-
-This project is under Creative Commons Licenses. 
-You are free to share and adapt under certain terms. 
-See http://creativecommons.org/licenses/by-nc/2.0/
