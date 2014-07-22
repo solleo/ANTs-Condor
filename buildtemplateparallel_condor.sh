@@ -46,9 +46,10 @@ PEXEC=${ANTSPATH}ANTSpexec.sh
 SGE=${ANTSPATH}waitForSGEQJobs.pl
 PBS=${ANTSPATH}waitForPBSQJobs.pl
 XGRID=${ANTSPATH}waitForXGridJobs.pl
+CONDOR=${ANTSPATH}waitForCONDORJobs.sh
 
 fle_error=0
-for FLE in $ANTSSCRIPTNAME $PEXEC $SGE $XGRID
+for FLE in $ANTSSCRIPTNAME $PEXEC $SGE $XGRID $CONDOR
   do
   if [ ! -x $FLE  ] ;
       then
