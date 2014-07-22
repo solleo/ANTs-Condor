@@ -5,7 +5,7 @@ ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the
 
 While the parallelization implemented in ANTS's script "buildtemplateparallel.sh" (v. 0.0.14 test) supports SGE, PBS and Apple XGrid, it does not support a virtual parallel computing environment called "(HT)Condor" (http://research.cs.wisc.edu/htcondor/).
 
-This project is to enable ANTs(1.9.v4-LINUX)'s parallel template building to work on Condor. To run it:
+This project is to parallelize ANTs(1.9.v4-LINUX)'s template building using Condor. To run it:
 
 0. You need to have ANTs, and Condor installed and executable.
 1. Since it submit jobs via `fsl_sub`, you also need to have fsl_sub executable and set environment variable as: `export FSLPARALLEL=CONDOR`
