@@ -1,7 +1,7 @@
 ANTs-Condor
 ===========
 
-ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the one of the best image registration tools. Since it takes quite sizable computational resources when it creates unbiased study-specific templates, parallelization can reduce the total computation time greatly.
+ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the one of the most sophisticated image registration tools. Since its unbiased template creation takes quite sizable computational resources, parallelization can reduce the total computation time greatly.
 
 While the parallelization implemented in ANTS's script "buildtemplateparallel.sh" (v. 0.0.14 test) supports SGE, PBS and Apple XGrid, it does not support a virtual parallel computing environment called "(HT)Condor" (http://research.cs.wisc.edu/htcondor/).
 
