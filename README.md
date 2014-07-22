@@ -1,9 +1,11 @@
 ANTs-Condor
 ===========
 
-ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the one of the best image registration tools and it takes quite sizable computational resources when it creates unbiased study-specific templates.
+ANTs (Advanced Normalization Tools; http://stnava.github.io/ANTs/) is really the one of the best image registration tools. Since it takes quite sizable computational resources when it creates unbiased study-specific templates, parallelization can reduce the total computation time greatly.
 
-This project is to run ANTs(1.9.v4-LINUX)'s buildtemplateparallel.sh on a virtual parallel computing environment called "(HT)Condor" (http://research.cs.wisc.edu/htcondor/).
+While the parallelization implemented in ANTS's script "buildtemplateparallel.sh" (v. 0.0.14 test) supports SGE, PBS and Apple XGrid, it does not support a virtual parallel computing environment called "(HT)Condor" (http://research.cs.wisc.edu/htcondor/).
+
+This project is to enable ANTs(1.9.v4-LINUX)'s parallel template building to work on Condor. To run it:
 
 0. You need to have ANTs, fsl_sub and Condor installed and executable.
 
