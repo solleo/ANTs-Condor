@@ -78,7 +78,7 @@ Usage:
 Compulsory arguments (minimal command line requires SGE cluster, otherwise use -c & -j options):
 
      -d:  ImageDimension: 2 or 3 (for 2 or 3 dimensional registration of single volume)
-	  ImageDimension: 4 (for template generation of time-series data)
+    ImageDimension: 4 (for template generation of time-series data)
 
      -o:  OUTPREFIX; A prefix that is prepended to all output files.
 
@@ -119,7 +119,7 @@ Optional arguments:
      -z:  Use this this volume as the target of all inputs. When not used, the script
           will create an unbiased starting point by averaging all inputs. Use the full path!
 
-	  If you do not have an initial template, it is advisible to run a few iterations with affine
+    If you do not have an initial template, it is advisible to run a few iterations with affine
           normalization only (-m 1x0x0) to get a sensible initial template, then pass this with -z
           to run full deformable registration.
 
@@ -190,7 +190,7 @@ Example Case:
 Compulsory arguments (minimal command line requires SGE cluster, otherwise use -c & -j options)::
 
      -d:  ImageDimension: 2 or 3 (for 2 or 3 dimensional registration of single volume)
-	  ImageDimension: 4 (for template generation of time-series data)
+    ImageDimension: 4 (for template generation of time-series data)
 
      -o:  OUTPREFIX; A prefix that is prepended to all output files.
 
@@ -202,7 +202,7 @@ NB: All files to be added to the template should be in the same directory.
 Optional arguments:
 
      -c:  Control for parallel computation (default 1) -- 0 == run serially,  1 == SGE qsub,
-	  2 == use PEXEC (localhost), 3 == Apple XGrid, 4 == PBS Grid, 5 == Condor(+fsl_sub)
+    2 == use PEXEC (localhost), 3 == Apple XGrid, 4 == PBS Grid, 5 == Condor(+fsl_sub)
 
      -g:  Gradient step size; smaller in magnitude results in more cautious steps (default 0.25). This does not affect the step size
           of individual registrations; it lets you update the template more cautiously after each iteration by reducing the template
@@ -212,20 +212,20 @@ Optional arguments:
 
      -j:  Number of cpu cores to use (default: 2; --- set -c option to 2 to use this .
 
-	  The optimal number of cpu cores to use for template generation depends on the availability of cores, the amount of
-	  free working memory (RAM) and the resolution of the data. High resolution datasets typically require more RAM during
-	  processing. Running out of RAM during a calculation will slow down all processing on your computer.
+    The optimal number of cpu cores to use for template generation depends on the availability of cores, the amount of
+    free working memory (RAM) and the resolution of the data. High resolution datasets typically require more RAM during
+    processing. Running out of RAM during a calculation will slow down all processing on your computer.
 
      -m:  Max-iterations
 
           Max-Iterations in form: JxKxL where
-	     J = max iterations at coarsest resolution (here, reduce by power of 2^2)
-	     K = middle resolution iterations (here,reduce by power of 2)
-	     L = fine resolution iterations (here, full resolution) !!this level takes much
+       J = max iterations at coarsest resolution (here, reduce by power of 2^2)
+       K = middle resolution iterations (here,reduce by power of 2)
+       L = fine resolution iterations (here, full resolution) !!this level takes much
                  more time per iteration!!
 
-	  Adding an extra value before JxKxL (i.e. resulting in IxJxKxL) would add another
-	  iteration level.
+    Adding an extra value before JxKxL (i.e. resulting in IxJxKxL) would add another
+    iteration level.
 
      -n:  N4BiasFieldCorrection of moving image ( 0 = off; 1 = on (default) )
 
@@ -240,31 +240,31 @@ Optional arguments:
 
      -s:  Type of similarity metric used for registration.
 
-	     For intramodal image registration, use:
-	     CC = cross-correlation
-	     MI = mutual information
-	     PR = probability mapping (default)
-	     MSQ = mean square difference (Demons-like)
-	     SSD = sum of squared differences
+       For intramodal image registration, use:
+       CC = cross-correlation
+       MI = mutual information
+       PR = probability mapping (default)
+       MSQ = mean square difference (Demons-like)
+       SSD = sum of squared differences
 
-	     For intermodal image registration, use:
-	     MI = mutual information
-	     PR = probability mapping (default)
+       For intermodal image registration, use:
+       MI = mutual information
+       PR = probability mapping (default)
 
      -t:  Type of transformation model used for registration.
 
-	     For rigid image registration, use:
-	     RI = Purely rigid
-	     RA = Affine rigid
+       For rigid image registration, use:
+       RI = Purely rigid
+       RA = Affine rigid
 
-	     For elastic image registration, use:
-	     EL = elastic transformation model (less deformation possible)
+       For elastic image registration, use:
+       EL = elastic transformation model (less deformation possible)
 
-	     For diffeomorphic image registration, use:
-	     SY = SyN with time with arbitrary number of time points in time discretization
-	     S2 = SyN with time optimized specifically for 2 time points in the time discretization
-	     GR = Greedy SyN (default) 
-	     EX = Exponential
+       For diffeomorphic image registration, use:
+       SY = SyN with time with arbitrary number of time points in time discretization
+       S2 = SyN with time optimized specifically for 2 time points in the time discretization
+       GR = Greedy SyN (default) 
+       EX = Exponential
              DD = Diffeomorphic Demons style exponential mapping
 
      -x:  XGrid arguments (e.g., -x "-p password -h controlhost")
@@ -335,17 +335,17 @@ function reportMappingParameters {
 --------------------------------------------------------------------------------------
  ANTSPATH is $ANTSPATH
 
- Dimensionality:			$DIM
- N4BiasFieldCorrection:			$N4CORRECT
- Similarity Metric:			$METRICTYPE
- Transformation:			$TRANSFORMATIONTYPE
- Regularization:			$REGULARIZATION
- MaxIterations:				$MAXITERATIONS
- Number Of MultiResolution Levels:	$NUMLEVELS
- OutputName prefix:			$OUTPUTNAME
- Template:  				$TEMPLATE
- Template Update Steps:			$ITERATIONLIMIT
- Template population:	   		$IMAGESETVARIABLE
+ Dimensionality:      $DIM
+ N4BiasFieldCorrection:     $N4CORRECT
+ Similarity Metric:     $METRICTYPE
+ Transformation:      $TRANSFORMATIONTYPE
+ Regularization:      $REGULARIZATION
+ MaxIterations:       $MAXITERATIONS
+ Number Of MultiResolution Levels:  $NUMLEVELS
+ OutputName prefix:     $OUTPUTNAME
+ Template:          $TEMPLATE
+ Template Update Steps:     $ITERATIONLIMIT
+ Template population:       $IMAGESETVARIABLE
 --------------------------------------------------------------------------------------
 REPORTMAPPINGPARAMETERS
 }
@@ -374,21 +374,21 @@ function shapeupdatetotemplate {
     echo "--------------------------------------------------------------------------------------"
     echo " shapeupdatetotemplate 1"
     echo "--------------------------------------------------------------------------------------"
-	${ANTSPATH}AverageImages $dim ${template} 1 ${outputname}*formed.nii.gz
+  ${ANTSPATH}AverageImages $dim ${template} 1 ${outputname}*formed.nii.gz
 
     echo
     echo "--------------------------------------------------------------------------------------"
     echo " shapeupdatetotemplate 2"
     echo "--------------------------------------------------------------------------------------"
 
-	${ANTSPATH}AverageImages $dim ${templatename}warp.nii.gz 0 `ls ${outputname}*Warp.nii.gz | grep -v "InverseWarp"`
+  ${ANTSPATH}AverageImages $dim ${templatename}warp.nii.gz 0 `ls ${outputname}*Warp.nii.gz | grep -v "InverseWarp"`
 
     echo
     echo "--------------------------------------------------------------------------------------"
     echo " shapeupdatetotemplate 3"
     echo "--------------------------------------------------------------------------------------"
 
-	${ANTSPATH}MultiplyImages $dim ${templatename}warp.nii.gz ${gradientstep} ${templatename}warp.nii.gz
+  ${ANTSPATH}MultiplyImages $dim ${templatename}warp.nii.gz ${gradientstep} ${templatename}warp.nii.gz
 
 
     echo
@@ -396,7 +396,7 @@ function shapeupdatetotemplate {
     echo " shapeupdatetotemplate 4"
     echo "--------------------------------------------------------------------------------------"
 
-	rm -f ${templatename}Affine${afftype}
+  rm -f ${templatename}Affine${afftype}
 
     echo
     echo "--------------------------------------------------------------------------------------"
@@ -575,19 +575,19 @@ function jobfnamepadding {
       do
 
       if [ "${#file}" -eq "9" ]
-	  then
-	  BASENAME2=`echo $file | cut -d 'b' -f 2 `
-	  mv "$file" "${BASENAME1}b_000${BASENAME2}"
+    then
+    BASENAME2=`echo $file | cut -d 'b' -f 2 `
+    mv "$file" "${BASENAME1}b_000${BASENAME2}"
 
       elif [ "${#file}" -eq "10" ]
-	  then
-	  BASENAME2=`echo $file | cut -d 'b' -f 2 `
-	  mv "$file" "${BASENAME1}b_00${BASENAME2}"
+    then
+    BASENAME2=`echo $file | cut -d 'b' -f 2 `
+    mv "$file" "${BASENAME1}b_00${BASENAME2}"
 
       elif [ "${#file}" -eq "11" ]
-	  then
-	  BASENAME2=`echo $file | cut -d 'b' -f 2 `
-	  mv "$file" "${BASENAME1}b_0${BASENAME2}"
+    then
+    BASENAME2=`echo $file | cut -d 'b' -f 2 `
+    mv "$file" "${BASENAME1}b_0${BASENAME2}"
       fi
     done
 
@@ -668,10 +668,10 @@ OUTPUTNAME=antsBTP
 # cpu_free_ram=$((${RAMfree}/${cpu_count}))
 
 if [ ${OSTYPE:0:6} == 'darwin' ]
-	then
-	cpu_count=`sysctl -n hw.physicalcpu`
+  then
+  cpu_count=`sysctl -n hw.physicalcpu`
 else
-	cpu_count=`cat /proc/cpuinfo | grep processor | wc -l`
+  cpu_count=`cat /proc/cpuinfo | grep processor | wc -l`
 fi
 
 # Provide output for Help
@@ -686,61 +686,61 @@ while getopts "c:d:g:i:j:h:m:n:o:p:s:r:t:x:z:" OPT
   do
   case $OPT in
       h) #help
-	  echo "$USAGE"
-	  exit 0
-	  ;;
+    echo "$USAGE"
+    exit 0
+    ;;
       c) #use SGE cluster
-	  DOQSUB=$OPTARG
-	  if [[ ${#DOQSUB} -gt 2 ]] ; then
-	      echo " DOQSUB must be an integer value (0=serial, 1=SGE qsub, 2=try pexec, 3=XGrid, 4=PBS qsub 5=CONDOR) you passed  -c $DOQSUB "
-	      exit 1
-	  fi
-	  ;;
+    DOQSUB=$OPTARG
+    if [[ ${#DOQSUB} -gt 2 ]] ; then
+        echo " DOQSUB must be an integer value (0=serial, 1=SGE qsub, 2=try pexec, 3=XGrid, 4=PBS qsub 5=CONDOR) you passed  -c $DOQSUB "
+        exit 1
+    fi
+    ;;
       d) #dimensions
-	  DIM=$OPTARG
-	  if [[ ${DIM} -eq 4 ]] ; then
-	      DIM=3
-	      TDIM=4
-	  fi
-	  ;;
+    DIM=$OPTARG
+    if [[ ${DIM} -eq 4 ]] ; then
+        DIM=3
+        TDIM=4
+    fi
+    ;;
       g) #gradient stepsize (default = 0.25)
-	  GRADIENTSTEP=$OPTARG
-	  ;;
+    GRADIENTSTEP=$OPTARG
+    ;;
       i) #iteration limit (default = 3)
-	  ITERATIONLIMIT=$OPTARG
-	  ;;
+    ITERATIONLIMIT=$OPTARG
+    ;;
       j) #number of cpu cores to use (default = 2)
-	  CORES=$OPTARG
-	  ;;
+    CORES=$OPTARG
+    ;;
       m) #max iterations other than default
-	  MAXITERATIONS=$OPTARG
-	  ;;
+    MAXITERATIONS=$OPTARG
+    ;;
       n) #apply bias field correction
-	  N4CORRECT=$OPTARG
-	  ;;
+    N4CORRECT=$OPTARG
+    ;;
       o) #output name prefix
-	  OUTPUTNAME=$OPTARG
-	  TEMPLATENAME=${OUTPUTNAME}template
-	  TEMPLATE=${TEMPLATENAME}.nii.gz
-	  ;;
+    OUTPUTNAME=$OPTARG
+    TEMPLATENAME=${OUTPUTNAME}template
+    TEMPLATE=${TEMPLATENAME}.nii.gz
+    ;;
       p) #Script prepend
-	  SCRIPTPREPEND=$OPTARG
-	  ;;
+    SCRIPTPREPEND=$OPTARG
+    ;;
       s) #similarity model
-	  METRICTYPE=$OPTARG
-	  ;;
+    METRICTYPE=$OPTARG
+    ;;
       r) #start with rigid-body registration
-	  RIGID=$OPTARG
-	  ;;
+    RIGID=$OPTARG
+    ;;
       t) #transformation model
-	  TRANSFORMATIONTYPE=$OPTARG
-	  ;;
+    TRANSFORMATIONTYPE=$OPTARG
+    ;;
       x) #initialization template
-	  XGRIDOPTS=$XGRIDOPTS
-	  ;;
+    XGRIDOPTS=$XGRIDOPTS
+    ;;
       z) #initialization template
-	  REGTEMPLATE=$OPTARG
-	  ;;
+    REGTEMPLATE=$OPTARG
+    ;;
       \?) # getopts issues an error message
       echo "$USAGE" >&2
       exit 1
@@ -797,118 +797,118 @@ elif [[ ${NINFILES} -eq 1 ]]
     range=`${ANTSPATH}ImageMath $TDIM abs nvols ${IMAGESETVARIABLE} | tail -1 | cut -d "," -f 4 | cut -d " " -f 2 | cut -d "]" -f 1 `
 
     if [ ${range} -eq 1 ] && [ ${TDIM} -ne 4 ]
-	then
-	echo "Please provide at least 2 filenames for the template."
-	echo "Use `basename $0` -h for help"
-	exit 1
+  then
+  echo "Please provide at least 2 filenames for the template."
+  echo "Use `basename $0` -h for help"
+  exit 1
     elif [ ${range} -gt 1 ] && [ ${TDIM} -ne 4 ]
-	then
-	echo "This is a multivolume file. Use -d 4"
-	echo "Use `basename $0` -h for help"
-	exit 1
+  then
+  echo "This is a multivolume file. Use -d 4"
+  echo "Use `basename $0` -h for help"
+  exit 1
     elif [ ${range} -gt 1 ] && [ ${TDIM} -eq 4 ]
-	then
-	echo
-	echo "--------------------------------------------------------------------------------------"
-	echo " Creating template of 4D input. "
-	echo "--------------------------------------------------------------------------------------"
+  then
+  echo
+  echo "--------------------------------------------------------------------------------------"
+  echo " Creating template of 4D input. "
+  echo "--------------------------------------------------------------------------------------"
 
-	#splitting volume
-	#setting up working dirs
-	tmpdir=${currentdir}/tmp_${RANDOM}_${RANDOM}_${RANDOM}_$$
-	(umask 077 && mkdir ${tmpdir}) || {
-		echo "Could not create temporary directory! Exiting." 1>&2
-		exit 1
-	}
+  #splitting volume
+  #setting up working dirs
+  tmpdir=${currentdir}/tmp_${RANDOM}_${RANDOM}_${RANDOM}_$$
+  (umask 077 && mkdir ${tmpdir}) || {
+    echo "Could not create temporary directory! Exiting." 1>&2
+    exit 1
+  }
 
-	mkdir ${tmpdir}/selection
+  mkdir ${tmpdir}/selection
 
-	#split the 4D file into 3D elements
-	cp ${IMAGESETVARIABLE} ${tmpdir}/
-	cd ${tmpdir}/
+  #split the 4D file into 3D elements
+  cp ${IMAGESETVARIABLE} ${tmpdir}/
+  cd ${tmpdir}/
  #       ${ANTSPATH}ImageMath $TDIM vol0.nii.gz TimeSeriesSubset ${IMAGESETVARIABLE} ${range}
-#	rm -f ${IMAGESETVARIABLE}
+# rm -f ${IMAGESETVARIABLE}
 
-	# selecting 16 volumes randomly from the timeseries for averaging, placing them in tmp/selection folder.
-	# the script will automatically divide timeseries into $total_volumes/16 bins from wich to take the random volumes;
+  # selecting 16 volumes randomly from the timeseries for averaging, placing them in tmp/selection folder.
+  # the script will automatically divide timeseries into $total_volumes/16 bins from wich to take the random volumes;
         # if there are more than 32 volumes in the time-series (in case they are smaller
-	nfmribins=2
-	let
-	if [ ${range} -gt 31  ]  ; then
-		BINSIZE=$((${range} / ${nfmribins}))
-		j=1 # initialize counter j
-		for ((i = 0; i < ${nfmribins} ; i++))
-			do
+  nfmribins=2
+  let
+  if [ ${range} -gt 31  ]  ; then
+    BINSIZE=$((${range} / ${nfmribins}))
+    j=1 # initialize counter j
+    for ((i = 0; i < ${nfmribins} ; i++))
+      do
 
-			FLOOR=$((${i} * ${BINSIZE}))
-			BINrange=$((${j} * ${BINSIZE}))
+      FLOOR=$((${i} * ${BINSIZE}))
+      BINrange=$((${j} * ${BINSIZE}))
 
-			# Retrieve random number between two limits.
-			number=0   #initialize
-				while [ "$number" -le $FLOOR ]
-				do
-				number=$RANDOM
-					if [ $i -lt 15 ]
-						then
-						let "number %= $BINrange"  # Scales $number down within $range.
-					elif [ $i -eq 15 ]
-						then
-						let "number %= $range"  # Scales $number down within $range.
-					fi
-				done
+      # Retrieve random number between two limits.
+      number=0   #initialize
+        while [ "$number" -le $FLOOR ]
+        do
+        number=$RANDOM
+          if [ $i -lt 15 ]
+            then
+            let "number %= $BINrange"  # Scales $number down within $range.
+          elif [ $i -eq 15 ]
+            then
+            let "number %= $range"  # Scales $number down within $range.
+          fi
+        done
 
-	#debug only
-			echo
-			echo "Random number between $FLOOR and $BINrange ---  $number"
-#			echo "Random number between $FLOOR and $range ---  $number"
-				if [ ${number} -lt 10 ]
-					then
-					${ANTSPATH}ImageMath $TDIM selection/vol000${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
-#					cp vol000${number}.nii.gz selection/
-				elif [ ${number} -ge 10 ] && [ ${number} -lt 100 ]
-					then
-					${ANTSPATH}ImageMath $TDIM selection/vol00${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
-#					cp vol00${number}.nii.gz selection/
-				elif [ ${number} -ge 100 ] && [ ${number} -lt 1000 ]
-					then
-					${ANTSPATH}ImageMath $TDIM selection/vol0${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
-#					cp vol0${number}.nii.gz selection/
-				fi
+  #debug only
+      echo
+      echo "Random number between $FLOOR and $BINrange ---  $number"
+#     echo "Random number between $FLOOR and $range ---  $number"
+        if [ ${number} -lt 10 ]
+          then
+          ${ANTSPATH}ImageMath $TDIM selection/vol000${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
+#         cp vol000${number}.nii.gz selection/
+        elif [ ${number} -ge 10 ] && [ ${number} -lt 100 ]
+          then
+          ${ANTSPATH}ImageMath $TDIM selection/vol00${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
+#         cp vol00${number}.nii.gz selection/
+        elif [ ${number} -ge 100 ] && [ ${number} -lt 1000 ]
+          then
+          ${ANTSPATH}ImageMath $TDIM selection/vol0${number}.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
+#         cp vol0${number}.nii.gz selection/
+        fi
 
-			let j++
-		done
+      let j++
+    done
 
-	elif [ ${range} -gt ${nfmribins}  ] && [ ${range} -lt 32  ]
-		then
+  elif [ ${range} -gt ${nfmribins}  ] && [ ${range} -lt 32  ]
+    then
 
-			for ((i = 0; i < ${nfmribins} ; i++))
-			do
-			number=$RANDOM
-			let "number %= $range"
+      for ((i = 0; i < ${nfmribins} ; i++))
+      do
+      number=$RANDOM
+      let "number %= $range"
 
-				if [ ${number} -lt 10 ]
-					then
-					${ANTSPATH}ImageMath $TDIM selection/vol0.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
-#					cp vol000${number}.nii.gz selection/
-				elif [ ${number} -ge 10 ] && [ ${number} -lt 100 ]
-					then
-					${ANTSPATH}ImageMath $TDIM selection/vol0.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
-#					cp vol00${number}.nii.gz selection/
-				fi
-			done
+        if [ ${number} -lt 10 ]
+          then
+          ${ANTSPATH}ImageMath $TDIM selection/vol0.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
+#         cp vol000${number}.nii.gz selection/
+        elif [ ${number} -ge 10 ] && [ ${number} -lt 100 ]
+          then
+          ${ANTSPATH}ImageMath $TDIM selection/vol0.nii.gz ExtractSlice ${IMAGESETVARIABLE} ${number}
+#         cp vol00${number}.nii.gz selection/
+        fi
+      done
 
-	elif [ ${range} -le ${nfmribins}  ]
-		then
+  elif [ ${range} -le ${nfmribins}  ]
+    then
 
-		${ANTSPATH}ImageMath selection/$TDIM vol0.nii.gz TimeSeriesSubset ${IMAGESETVARIABLE} ${range}
-#		cp *.nii.gz selection/
+    ${ANTSPATH}ImageMath selection/$TDIM vol0.nii.gz TimeSeriesSubset ${IMAGESETVARIABLE} ${range}
+#   cp *.nii.gz selection/
 
-	fi
+  fi
 
-	# set filelist variable
-	rm -f ${IMAGESETVARIABLE}
-	cd selection/
-	IMAGESETVARIABLE=`ls *.nii.gz`
+  # set filelist variable
+  rm -f ${IMAGESETVARIABLE}
+  cd selection/
+  IMAGESETVARIABLE=`ls *.nii.gz`
 
     fi
 fi
@@ -927,7 +927,7 @@ else
     echo "--------------------------------------------------------------------------------------"
     echo " Initial template found.  This will be used for guiding the registration. use : $REGTEMPLATE and $TEMPLATE "
     echo "--------------------------------------------------------------------------------------"
-	# now move the initial registration template to OUTPUTNAME, otherwise this input gets overwritten.
+  # now move the initial registration template to OUTPUTNAME, otherwise this input gets overwritten.
 
     cp ${REGTEMPLATE} ${TEMPLATE}
 
@@ -947,6 +947,7 @@ if [ "$RIGID" -eq 1 ] ;
     jobIDs=""
 
     RIGID_IMAGESET=""
+    rm -rf jobs_rigid.txt
 
     for IMG in $IMAGESETVARIABLE
       do
@@ -968,99 +969,97 @@ if [ "$RIGID" -eq 1 ] ;
       echo "$exe2" >> $qscript
 
       if [ $DOQSUB -eq 1 ] ; then
-		id=`qsub -cwd -S /bin/bash -N antsBuildTemplate_rigid -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS $qscript | awk '{print $3}'`
-		jobIDs="$jobIDs $id"
-		    sleep 0.5
-		  elif [ $DOQSUB -eq 4 ]; then
+    id=`qsub -cwd -S /bin/bash -N antsBuildTemplate_rigid -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS $qscript | awk '{print $3}'`
+    jobIDs="$jobIDs $id"
+        sleep 0.5
+      elif [ $DOQSUB -eq 4 ]; then
         echo "cp -R /jobtmp/pbstmp.\$PBS_JOBID/* ${currentdir}" >> $qscript;
-		id=`qsub -N antsrigid -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS -q nopreempt -l nodes=1:ppn=1 -l walltime=4:00:00 $qscript | awk '{print $1}'`
-		jobIDs="$jobIDs $id"
-		    sleep 0.5
+    id=`qsub -N antsrigid -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS -q nopreempt -l nodes=1:ppn=1 -l walltime=4:00:00 $qscript | awk '{print $1}'`
+    jobIDs="$jobIDs $id"
+        sleep 0.5
       elif  [ $DOQSUB -eq 2 ] ; then
-	  # Send pexe and exe2 to same job file so that they execute in series
-	  echo $pexe >> job${count}_r.sh
-	  echo $exe2 >> job${count}_r.sh
+    # Send pexe and exe2 to same job file so that they execute in series
+    echo $pexe >> job${count}_r.sh
+    echo $exe2 >> job${count}_r.sh
       elif  [ $DOQSUB -eq 3 ] ; then
-	id=`xgrid $XGRIDOPTS -job submit /bin/bash $qscript | awk '{sub(/;/,"");print $3}' | tr '\n' ' ' | sed 's:  *: :g'`
-	#echo "xgrid $XGRIDOPTS -job submit /bin/bash $qscript"
-		jobIDs="$jobIDs $id"
+    id=`xgrid $XGRIDOPTS -job submit /bin/bash $qscript | awk '{sub(/;/,"");print $3}' | tr '\n' ' ' | sed 's:  *: :g'`
+    #echo "xgrid $XGRIDOPTS -job submit /bin/bash $qscript"
+    jobIDs="$jobIDs $id"
       elif  [ $DOQSUB -eq 0 ] ; then
-	  # execute jobs in series
-	  $exe
-	  $exe2
+    # execute jobs in series
+    $exe
+    $exe2
       elif  [ $DOQSUB -eq 5 ] ; then
-    # submit to condor!
+    # [add in the job list]
     qscript="job_${count}r.sh"
     echo $exe | tee $qscript
-    id=`fsl_sub -t ${qscript}`
-    jobIDs="$jobIDs $id"
+    echo "bash ${qscript}" >> jobs_rigid.txt
       fi
-
       ((count++))
     done
 
 
     if [ $DOQSUB -eq 1 ];
-	then
-	# Run jobs on SGE and wait to finish
-	echo
-	echo "--------------------------------------------------------------------------------------"
-	echo " Starting ANTS rigid registration on SGE cluster. Submitted $count jobs "
-	echo "--------------------------------------------------------------------------------------"
+  then
+  # Run jobs on SGE and wait to finish
+  echo
+  echo "--------------------------------------------------------------------------------------"
+  echo " Starting ANTS rigid registration on SGE cluster. Submitted $count jobs "
+  echo "--------------------------------------------------------------------------------------"
         # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
-	${ANTSPATH}waitForSGEQJobs.pl 1 60 $jobIDs
+  ${ANTSPATH}waitForSGEQJobs.pl 1 60 $jobIDs
 
-	# Returns 1 if there are errors
-	if [ ! $? -eq 0 ]; then
-	    echo "qsub submission failed - jobs went into error state"
-	    exit 1;
-	fi
+  # Returns 1 if there are errors
+  if [ ! $? -eq 0 ]; then
+      echo "qsub submission failed - jobs went into error state"
+      exit 1;
+  fi
     fi
 
     if [ $DOQSUB -eq 4 ];
-	then
-	# Run jobs on PBS and wait to finish
-	echo
-	echo "--------------------------------------------------------------------------------------"
-	echo " Starting ANTS rigid registration on PBS cluster. Submitted $count jobs "
-	echo "--------------------------------------------------------------------------------------"
+  then
+  # Run jobs on PBS and wait to finish
+  echo
+  echo "--------------------------------------------------------------------------------------"
+  echo " Starting ANTS rigid registration on PBS cluster. Submitted $count jobs "
+  echo "--------------------------------------------------------------------------------------"
         # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
-	${ANTSPATH}waitForPBSQJobs.pl 1 60 $jobIDs
+  ${ANTSPATH}waitForPBSQJobs.pl 1 60 $jobIDs
 
-	# Returns 1 if there are errors
-	if [ ! $? -eq 0 ]; then
-	    echo "qsub submission failed - jobs went into error state"
-	    exit 1;
-	fi
+  # Returns 1 if there are errors
+  if [ ! $? -eq 0 ]; then
+      echo "qsub submission failed - jobs went into error state"
+      exit 1;
+  fi
     fi
 
     # Run jobs on localhost and wait to finish
     if [ $DOQSUB -eq 2 ];
-	then
-	echo
-	echo "--------------------------------------------------------------------------------------"
-	echo " Starting ANTS rigid registration on max ${CORES} cpucores. "
-	echo " Progress can be viewed in job*_metriclog.txt"
-	echo "--------------------------------------------------------------------------------------"
-	jobfnamepadding #adds leading zeros to the jobnames, so they are carried out chronologically
-	chmod +x job*.sh
-	$PEXEC -j ${CORES} "sh" job*.sh
+  then
+  echo
+  echo "--------------------------------------------------------------------------------------"
+  echo " Starting ANTS rigid registration on max ${CORES} cpucores. "
+  echo " Progress can be viewed in job*_metriclog.txt"
+  echo "--------------------------------------------------------------------------------------"
+  jobfnamepadding #adds leading zeros to the jobnames, so they are carried out chronologically
+  chmod +x job*.sh
+  $PEXEC -j ${CORES} "sh" job*.sh
     fi
 
     if [ $DOQSUB -eq 3 ];
-	then
-	# Run jobs on XGrid and wait to finish
-	echo
-	echo "--------------------------------------------------------------------------------------"
-	echo " Starting ANTS rigid registration on XGrid cluster. Submitted $count jobs "
-	echo "--------------------------------------------------------------------------------------"
+  then
+  # Run jobs on XGrid and wait to finish
+  echo
+  echo "--------------------------------------------------------------------------------------"
+  echo " Starting ANTS rigid registration on XGrid cluster. Submitted $count jobs "
+  echo "--------------------------------------------------------------------------------------"
         # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
-	${ANTSPATH}waitForXGridJobs.pl -xgridflags "$XGRIDOPTS" -verbose -delay 30 $jobIDs
-	# Returns 1 if there are errors
-	if [ ! $? -eq 0 ]; then
-	    echo "XGrid submission failed - jobs went into error state"
-	    exit 1;
-	fi
+  ${ANTSPATH}waitForXGridJobs.pl -xgridflags "$XGRIDOPTS" -verbose -delay 30 $jobIDs
+  # Returns 1 if there are errors
+  if [ ! $? -eq 0 ]; then
+      echo "XGrid submission failed - jobs went into error state"
+      exit 1;
+  fi
     fi
 
   if [ $DOQSUB -eq 5 ]; then
@@ -1068,8 +1067,10 @@ if [ "$RIGID" -eq 1 ] ;
   echo "--------------------------------------------------------------------------------------"
   echo " Starting ANTS rigid registration on CONDOR cluster. Submitted $count jobs "
   echo "--------------------------------------------------------------------------------------"
+  # Now submit the job
+  qid=`fsl_sub -t jobs_rigid.txt`
   # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
-  ${ANTSPATH}waitForCONDORJobs.sh 60 ${jobIDs} # check every minute 
+  ${ANTSPATH}waitForCONDORJobs.sh 60 ${qid} # check every minute 
   # Returns 1 if there are errors
   if [ ! $? -eq 0 ]; then
       echo "CONDOR submission failed - jobs went into error state"
@@ -1088,21 +1089,21 @@ if [ "$RIGID" -eq 1 ] ;
 
     # backup logs
     if [ $DOQSUB -eq 1 ];
-	then
-	mv antsBuildTemplate_rigid* rigid/
+  then
+  mv antsBuildTemplate_rigid* rigid/
         # Remove qsub scripts
-	rm -f job_${count}_qsub.sh
+  rm -f job_${count}_qsub.sh
     elif [ $DOQSUB -eq 4 ];
       then
       mv antsrigid* rigid/
         # Remove qsub scripts
-	rm -f job_${count}_qsub.sh
+  rm -f job_${count}_qsub.sh
     elif [ $DOQSUB -eq 2 ];
-		then
-		mv job*.txt rigid/
+    then
+    mv job*.txt rigid/
     elif [ $DOQSUB -eq 3 ];
-		then
-		rm -f job_*_qsub.sh
+    then
+    rm -f job_*_qsub.sh
     elif [ $DOQSUB -eq 5 ];
       then
       mv job* rigid/
@@ -1136,6 +1137,7 @@ while [  $i -lt ${ITERATIONLIMIT} ]
 
   rm -f  ${OUTPUTNAME}*Warp*.nii*
   rm -f job*.sh
+  rm -f jobs_${i}.txt
 
 # Used to save time by only running coarse registration for the first couple of iterations
 # But with decent initialization, this is probably not worthwhile.
@@ -1178,8 +1180,8 @@ while [  $i -lt ${ITERATIONLIMIT} ]
 
     # 4 Test if outputfilename has only a single extention and remove that
     if [ ${#OUTFN} -eq ${#POO} ]
-	then
-	OUTFN=${OUTPUTNAME}${IMG%.*}
+  then
+  OUTFN=${OUTPUTNAME}${IMG%.*}
     fi
 
     # 5 prepare registration command
@@ -1189,41 +1191,40 @@ while [  $i -lt ${ITERATIONLIMIT} ]
     # 6 submit to SGE (DOQSUB=1), PBS (DOQSUB=4), PEXEC (DOQSUB=2), XGrid (DOQSUB=3) or else run locally (DOQSUB=0)
     #   to condor (DOQSUB = 5)
     if [ $DOQSUB -eq 1 ]; then
-	id=`qsub -cwd -N antsBuildTemplate_deformable_${i} -S /bin/bash -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS $exe | awk '{print $3}'`
-	     jobIDs="$jobIDs $id"
-	     sleep 0.5
+  id=`qsub -cwd -N antsBuildTemplate_deformable_${i} -S /bin/bash -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH $QSUBOPTS $exe | awk '{print $3}'`
+       jobIDs="$jobIDs $id"
+       sleep 0.5
     elif [ $DOQSUB -eq 4 ]; then
       qscript="job_${count}_${i}.sh"
-	    echo "$SCRIPTPREPEND" > $qscript
-	     echo "$exe" >> $qscript
+      echo "$SCRIPTPREPEND" > $qscript
+       echo "$exe" >> $qscript
       echo "cp -R /jobtmp/pbstmp.\$PBS_JOBID/* ${currentdir}" >> $qscript;
-	     id=`qsub -N antsdef${i} -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH -q nopreempt -l nodes=1:ppn=1 -l walltime=4:00:00 $QSUBOPTS $qscript | awk '{print $1}'`
-	     jobIDs="$jobIDs $id"
-	sleep 0.5
+       id=`qsub -N antsdef${i} -v ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1,LD_LIBRARY_PATH=$LD_LIBRARY_PATH,ANTSPATH=$ANTSPATH -q nopreempt -l nodes=1:ppn=1 -l walltime=4:00:00 $QSUBOPTS $qscript | awk '{print $1}'`
+       jobIDs="$jobIDs $id"
+  sleep 0.5
     elif [ $DOQSUB -eq 2 ] ; then
-	echo $pexe
-	echo $pexe >> job${count}_${i}.sh
+  echo $pexe
+  echo $pexe >> job${count}_${i}.sh
     elif [ $DOQSUB -eq 3 ] ; then
       qscript="job_${count}_${i}.sh"
       #exe="${ANTSSCRIPTNAME} -d ${DIM} -r ./${TEMPLATE} -i ./${IMG} -o ./${OUTFN} -m ${MAXITERATIONS} -n ${N4CORRECT} -s ${METRICTYPE} -t ${TRANSFORMATIONTYPE} "
-	    echo "$SCRIPTPREPEND" > $qscript
-	     echo "$exe" >> $qscript
+      echo "$SCRIPTPREPEND" > $qscript
+       echo "$exe" >> $qscript
       id=`xgrid $XGRIDOPTS -job submit /bin/bash $qscript | awk '{sub(/;/,"");print $3}' | tr '\n' ' ' | sed 's:  *: :g'`
-	     jobIDs="$jobIDs $id"
+       jobIDs="$jobIDs $id"
     elif  [ $DOQSUB -eq 0 ] ; then
-		    bash $exe
+        bash $exe
     elif  [ $DOQSUB -eq 5 ] ; then
-      # submit to condor!
+      # Add to the job list
       qscript="job_${count}_${i}.sh"
       echo $exe | tee $qscript
-      id=`fsl_sub -t ${qscript}`
-      jobIDs="$jobIDs $id"
+      echo "bash ${qscript}" >> jobs_${i}.txt
     fi
 
     # counter updated, but not directly used in this loop
     count=`expr $count + 1`;
 
-#		echo " submitting job number $count " # for debugging only
+#   echo " submitting job number $count " # for debugging only
   done
 
   # SGE wait for script to finish
@@ -1249,9 +1250,10 @@ while [  $i -lt ${ITERATIONLIMIT} ]
       echo "--------------------------------------------------------------------------------------"
       echo " Starting ANTS registration on PBS cluster. Iteration: $itdisplay of $ITERATIONLIMIT"
       echo "--------------------------------------------------------------------------------------"
-
+      # now submit
+      qid=`fsl_sub -t jobs_${i}.txt`
       # now wait for the stuff to finish - this will take a while so poll queue every 10 mins
-      ${ANTSPATH}waitForPBSQJobs.pl 1 600 $jobIDs
+      ${ANTSPATH}waitForPBSQJobs.pl 1 600 ${qid}
 
       if [ ! $? -eq 0 ]; then
         echo "qsub submission failed - jobs went into error state"
