@@ -1294,7 +1294,8 @@ rm -f job*.sh
 if [ "${range}" -gt 1 ] && [ "${TDIM}" -eq 4 ]; then
   mv ${tmpdir}/selection/${TEMPLATE} ${currentdir}/
   cd ${currentdir}
-  rm -rf ${tmpdir}/
+  #rm -rf ${tmpdir}/
+  mv ${tmpdir} /tmp/
 fi
 
 # [TODO] cleanup condor temporary files
