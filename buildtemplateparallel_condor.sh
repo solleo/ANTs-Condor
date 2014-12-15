@@ -38,7 +38,7 @@ if [ ! -s ${ANTSPATH}/ANTS ] ; then
   echo "ANTS program can't be found. Please (re)define \$ANTSPATH in your environment."
   exit
 fi
-
+ANTSPATH=${ANTSPATH}/
 # Test availability of helper scripts.
 # No need to test this more than once. Can reside outside of the main loop.
 ANTSSCRIPTNAME=${ANTSPATH}antsIntroduction.sh
