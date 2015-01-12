@@ -929,8 +929,8 @@ if [ "$RIGID" -eq 1 ]; then
     RIGID_IMAGESET="$RIGID_IMAGESET rigid_${IMG}"
 
     BASENAME=` echo ${IMG} | cut -d '.' -f 1 `
-
-    exe=" ${ANTSPATH}ANTS $DIM -m MI[${TEMPLATE},${IMG},1,32] -o rigid_${IMG} -i 0 --use-Histogram-Matching --number-of-affine-iterations 10000x10000x10000x10000x10000 $RIGIDTYPE"
+    # doing rigid transformation with SUPER NICENESS!
+    exe="nice -n 15 ${ANTSPATH}ANTS $DIM -m MI[${TEMPLATE},${IMG},1,32] -o rigid_${IMG} -i 0 --use-Histogram-Matching --number-of-affine-iterations 10000x10000x10000x10000x10000 $RIGIDTYPE"
     exe2="${ANTSPATH}WarpImageMultiTransform $DIM ${IMG} rigid_${IMG} rigid_${BASENAME}Affine${afftype} -R ${TEMPLATE}"
     pexe=" $exe >> job_${count}_metriclog.txt "
 
@@ -1152,8 +1152,8 @@ while [  $i -lt ${ITERATIONLIMIT} ]
       OUTFN=${OUTPUTNAME}${IMG%.*}
     fi
 
-    # 5 prepare registration command
-    exe="${ANTSSCRIPTNAME} -d ${DIM} -r ${dir}/${TEMPLATE} -i ${dir}/${IMG} -o ${dir}/${OUTFN} -m ${MAXITERATIONS} -n ${N4CORRECT} -s ${METRICTYPE} -t ${TRANSFORMATIONTYPE} "
+    # 5 prepare registration command with SUPER NICENESS!
+    exe="nice -n 15 ${ANTSSCRIPTNAME} -d ${DIM} -r ${dir}/${TEMPLATE} -i ${dir}/${IMG} -o ${dir}/${OUTFN} -m ${MAXITERATIONS} -n ${N4CORRECT} -s ${METRICTYPE} -t ${TRANSFORMATIONTYPE} "
     pexe=" $exe >> job_${count}_${i}_metriclog.txt "
 
     # 6 submit to SGE (DOQSUB=1), PBS (DOQSUB=4), PEXEC (DOQSUB=2), XGrid (DOQSUB=3) or else run locally (DOQSUB=0)
