@@ -1042,6 +1042,8 @@ if [ "$RIGID" -eq 1 ]; then
     echo "--------------------------------------------------------------------------------------"
     # now submit them all together
     qid=`fsl_sub -t ${joblist}`
+    # set the priority to the lowest otherwise other people in condor will freak out
+    condor_prio ${qit} -20
     # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
     ${ANTSPATH}waitForCONDORJobs.sh 60 ${qid} # check every minute 
     # Returns 1 if there are errors
@@ -1228,6 +1230,8 @@ while [  $i -lt ${ITERATIONLIMIT} ]
     echo "--------------------------------------------------------------------------------------"
     # now submit them all together
     qid=`fsl_sub -t ${joblist}`
+    # set the priority to the lowest otherwise other people in condor will freak out
+    condor_prio ${qit} -20    
     # now wait for the last job to be finished 
     ${ANTSPATH}waitForCONDORJobs.sh 600 ${qid} # check every 10 minute
   fi
