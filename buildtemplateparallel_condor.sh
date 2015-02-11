@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="0.0.14 test.condor"
+VERSION="0.0.141 test.condor"
 afftype=".txt"
 # trap keyboard interrupt (control-c)
 trap control_c SIGINT
@@ -613,15 +613,14 @@ cleanup()
     kill ${runningANTSpids[${i}]}
   done
 
-# [TODO] cleanup condor temporary files
-#if [ $DOQSUB -eq 5 ]; then
-# cleanupcondor 
-#fi
-
   return $?
 }
 
-#cleanupcondor(){}
+cleanupcondor()
+{
+  condor_rm $jobIDs
+  mv tmp* /tmp/
+}
 ## cleanup for condor temporary files
 
 
@@ -633,6 +632,10 @@ control_c()
 
   if [ $DOQSUB -eq 1 ] ; then
      qdel $jobIDs
+  fi
+  
+  if [ $ DOQSUB -eq 5 ]; then
+     cleanupcondor
   fi
 
   exit $?
@@ -929,7 +932,7 @@ if [ "$RIGID" -eq 1 ]; then
     RIGID_IMAGESET="$RIGID_IMAGESET rigid_${IMG}"
 
     BASENAME=` echo ${IMG} | cut -d '.' -f 1 `
-    # doing rigid transformation with SUPER NICENESS!
+    # even greater niceness!
     exe="nice -n 15 ${ANTSPATH}ANTS $DIM -m MI[${TEMPLATE},${IMG},1,32] -o rigid_${IMG} -i 0 --use-Histogram-Matching --number-of-affine-iterations 10000x10000x10000x10000x10000 $RIGIDTYPE"
     exe2="${ANTSPATH}WarpImageMultiTransform $DIM ${IMG} rigid_${IMG} rigid_${BASENAME}Affine${afftype} -R ${TEMPLATE}"
     pexe=" $exe >> job_${count}_metriclog.txt "
@@ -1042,8 +1045,8 @@ if [ "$RIGID" -eq 1 ]; then
     echo "--------------------------------------------------------------------------------------"
     # now submit them all together
     qid=`fsl_sub -t ${joblist}`
-    # set the priority to the lowest otherwise other people in condor will freak out
-    condor_prio ${qit} -20
+    # set the job priority lowerest otherwise people just get crazy
+    condor_prio $qid -20
     # now wait for the jobs to finish. Rigid registration is quick, so poll queue every 60 seconds
     ${ANTSPATH}waitForCONDORJobs.sh 60 ${qid} # check every minute 
     # Returns 1 if there are errors
@@ -1230,8 +1233,8 @@ while [  $i -lt ${ITERATIONLIMIT} ]
     echo "--------------------------------------------------------------------------------------"
     # now submit them all together
     qid=`fsl_sub -t ${joblist}`
-    # set the priority to the lowest otherwise other people in condor will freak out
-    condor_prio ${qit} -20    
+    # set the job priority lowerest otherwise people just get crazy
+    condor_prio $qid -20
     # now wait for the last job to be finished 
     ${ANTSPATH}waitForCONDORJobs.sh 600 ${qid} # check every 10 minute
   fi
@@ -1302,10 +1305,10 @@ if [ "${range}" -gt 1 ] && [ "${TDIM}" -eq 4 ]; then
   mv ${tmpdir} /tmp/
 fi
 
-# [TODO] cleanup condor temporary files
-#if [ $DOQSUB -eq 5 ]; then
-# cleanupcondor
-#fi
+#cleanup tmp files
+if [ $DOQSUB -eq 5 ]; then
+  cleanupcondor
+fi
 
 time_end=`date +%s`
 time_elapsed=$((time_end - time_start))
